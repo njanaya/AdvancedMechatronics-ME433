@@ -1,6 +1,6 @@
 # Yeast Sopaipillas
 
-A classic New Mexican specialty, the Sopaipilla is a fried bread that puffs up like a pillow. This recipe comes from "Comida Sabrosa", a no frills new Mexican food staple cook book written by Irene Barraza Sanchez and Gloria Sanchez Yund.  
+A classic New Mexican specialty, the Sopaipilla is a fried bread that puffs up like a pillow. This recipe comes from [Comida Sabrosa](https://www.unmpress.com/9780826323866/comida-sabrosa/), a no frills New Mexican food cook book written by Irene Barraza Sanchez and Gloria Sanchez Yund.  
 
 ## 🕐 Prep Time: 30 mins  
 ## 🔥 Cook Time: 45 min of frying depending on the size of your skillet or fryer  
