@@ -10,12 +10,19 @@ A classic New Mexican specialty, the Sopaipilla is a fried bread that puffs up l
 
 ## 🧾 Ingredients
 4 cups flour
+
 1 1/2 teaspoons salt
+
 1 tablespoon sugar
+
 1 teaspoon baking powder
+
 1 tablespoon shortening
+
 1 pkg. dry yeast
+
 1/4 cup warm water (110°)
+
 1 1/4 cup scalded milk, cooled 
 
 Oil for frying
@@ -53,7 +60,6 @@ brown on both sides; drain on
 absorbent towel.
 
 SERVE 
-MAKES 3-4 dozen.
 
 ---
 
