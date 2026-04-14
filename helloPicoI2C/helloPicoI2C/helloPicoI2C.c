@@ -51,7 +51,7 @@ int main()
     // For more examples of UART use see https://github.com/raspberrypi/pico-examples/tree/master/uart
 
     while (true) {
-        printf("Hello, nick!\n");
+        printf("Hello, bethany!\n");
         sleep_ms(1000);
     }
 }
