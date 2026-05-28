@@ -1,0 +1,5 @@
+C:/Users/nicka/Desktop/Git Repos/AdvancedMechatronics-ME433/HW12/FDCAN_Com_Polling/Src/stm32c0xx_hal_msp.c:62:6:HAL_MspInit	16	static
+C:/Users/nicka/Desktop/Git Repos/AdvancedMechatronics-ME433/HW12/FDCAN_Com_Polling/Src/stm32c0xx_hal_msp.c:85:6:HAL_FDCAN_MspInit	88	static
+C:/Users/nicka/Desktop/Git Repos/AdvancedMechatronics-ME433/HW12/FDCAN_Com_Polling/Src/stm32c0xx_hal_msp.c:133:6:HAL_FDCAN_MspDeInit	16	static
+C:/Users/nicka/Desktop/Git Repos/AdvancedMechatronics-ME433/HW12/FDCAN_Com_Polling/Src/stm32c0xx_hal_msp.c:162:6:HAL_UART_MspInit	88	static
+C:/Users/nicka/Desktop/Git Repos/AdvancedMechatronics-ME433/HW12/FDCAN_Com_Polling/Src/stm32c0xx_hal_msp.c:218:6:HAL_UART_MspDeInit	16	static
