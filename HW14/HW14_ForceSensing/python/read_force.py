@@ -1,3 +1,8 @@
+#This code sends a command to the Pico to start sending force sensor data, 
+# then reads and parses the incoming serial data, storing time, raw, and filtered values. 
+# It plots the raw and filtered data over time, computes the FFT of the 
+# raw signal to find the dominant frequency, and plots the FFT magnitude spectrum.
+
 import serial
 import time
 import numpy as np

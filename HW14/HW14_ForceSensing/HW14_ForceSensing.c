@@ -1,3 +1,4 @@
+// This code initializes the HX711 force sensor, reads raw data from it, applies an IIR filter, and sends the time, raw, and filtered data over UART.
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/i2c.h"
@@ -25,6 +26,7 @@
 #define MAX_SAMPLES 1000
 #define IIR_A 0.90f
 
+// Initializes the GPIO pins for the HX711. SCK is set as an output and initialized to low, while DT is set as an input.
 void hx711_init() {
     gpio_init(HX711_SCK);
     gpio_set_dir(HX711_SCK, GPIO_OUT);
@@ -33,7 +35,8 @@ void hx711_init() {
     gpio_init(HX711_DT);
     gpio_set_dir(HX711_DT, GPIO_IN);
 }
-
+//bitbang code to read 24 bits from the HX711, with a 25th pulse to set gain for next reading. 
+//It waits for data ready, then reads bits while toggling the clock, and finally sign-extends the result to a 32-bit signed integer.
 int32_t hx711_read() {
     uint32_t raw = 0;
 
@@ -103,44 +106,47 @@ int main()
     printf("HX711 Force Sensor Test\n");
 
     int num_samples = 0;
+    // Ask user for number of samples to read, with a maximum limit defined by MAX_SAMPLES. The input is read from standard input and stored in num_samples.
+    printf("Enter number of samples:\n");
+    scanf("%d", &num_samples);
 
-printf("Enter number of samples:\n");
-scanf("%d", &num_samples);
-
-if (num_samples > MAX_SAMPLES) {
-    num_samples = MAX_SAMPLES;
-}
-
-int32_t raw_data[MAX_SAMPLES];
-float filtered_data[MAX_SAMPLES];
-uint32_t time_data[MAX_SAMPLES];
-
-float filtered = 0.0f;
-
-for (int i = 0; i < num_samples; i++) {
-    int32_t raw = hx711_read();
-    uint32_t time_ms = to_ms_since_boot(get_absolute_time());
-
-    if (i == 0) {
-        filtered = raw;
-    } else {
-        filtered = IIR_A * filtered + (1.0f - IIR_A) * raw;
+    if (num_samples > MAX_SAMPLES) {
+        num_samples = MAX_SAMPLES;
     }
 
-    raw_data[i] = raw;
-    filtered_data[i] = filtered;
-    time_data[i] = time_ms;
-}
+    int32_t raw_data[MAX_SAMPLES];
+    float filtered_data[MAX_SAMPLES];
+    uint32_t time_data[MAX_SAMPLES];
+    // Read the specified number of samples from the HX711, applying an IIR filter to the raw data. 
+    // The raw readings, filtered values, and timestamps are stored in arrays for later output.
+    float filtered = 0.0f;
 
-printf("time_ms,raw,filtered\n");
+    // The loop reads raw data from the HX711, applies an IIR filter to it, and stores the raw, filtered, and timestamp data in arrays.
+    for (int i = 0; i < num_samples; i++) {
+        int32_t raw = hx711_read();
+        uint32_t time_ms = to_ms_since_boot(get_absolute_time());
 
-for (int i = 0; i < num_samples; i++) {
-    printf("%lu,%ld,%.2f\n",
-           time_data[i],
-           raw_data[i],
-           filtered_data[i]);
-}
- 
+        if (i == 0) {
+            filtered = raw;
+        } else {
+            filtered = IIR_A * filtered + (1.0f - IIR_A) * raw;
+        }
+
+        raw_data[i] = raw;
+        filtered_data[i] = filtered;
+        time_data[i] = time_ms;
+    }
+    // After collecting the data, it prints a CSV header followed by the time, raw, and filtered values for each sample.
+    
+    printf("time_ms,raw,filtered\n");
+
+    for (int i = 0; i < num_samples; i++) {
+        printf("%lu,%ld,%.2f\n",
+            time_data[i],
+            raw_data[i],
+            filtered_data[i]);
+    }
+    // The program then enters an infinite loop to keep running.
     while (true) {
         sleep_ms(1000);
     }
