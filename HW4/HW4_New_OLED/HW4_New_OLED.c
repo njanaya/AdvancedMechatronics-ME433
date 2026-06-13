@@ -112,11 +112,28 @@ int main()
     absolute_time_t last_blink_time = get_absolute_time();
     // set up a variable to track the LED state for the heartbeat
     bool led_state = false;
+
+    //Impliment Frames per sec. 
+    float fps = 0.0;
+    absolute_time_t last_frame_time = get_absolute_time();
+
+    absolute_time_t current_frame_time = get_absolute_time();
+
+    int64_t frame_time_us =
+        absolute_time_diff_us(last_frame_time, current_frame_time);
+
+    if (frame_time_us > 0) {
+        fps = 1000000.0f / frame_time_us;
+    }
+
+    last_frame_time = current_frame_time;
     
     while (true) {
         ssd1306_clear();
 
         drawString(0, 0, "Hello Nick");
+
+        current_frame_time = get_absolute_time();
 
         //toggle this section if you want to turn on the count.
         // sprintf(buffer, "Count: %d", count);
@@ -143,6 +160,20 @@ int main()
         // ssd1306_drawPixel(0, 24, 0);
         // ssd1306_update();
         // sleep_ms(500);
+
+        sprintf(buffer, "FPS: %.1f", fps);
+        drawString(4, 24, buffer);
+
+
+        // now calculate FPS for the next frame
+        current_frame_time = get_absolute_time();
+        int64_t frame_time_us = absolute_time_diff_us(last_frame_time, current_frame_time);
+
+        if (frame_time_us > 0) {
+            fps = 1000000.0f / frame_time_us;
+        }
+
+        last_frame_time = current_frame_time;
 
         // Check if it's time to toggle the LED for the heartbeat
         absolute_time_t current_time = get_absolute_time();
