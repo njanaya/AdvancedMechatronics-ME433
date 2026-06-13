@@ -2,6 +2,7 @@
 #include "pico/stdlib.h"
 #include "hardware/i2c.h"
 #include "hardware/uart.h"
+#include "hardware/gpio.h"
 #include "ssd1306.h"
 #include "font.h"
 

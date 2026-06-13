@@ -87,7 +87,7 @@ int main() {
     while (true) {
         ssd1306_clear();
 
-        drawString(0, 0, "Hello Joe");
+        drawString(0, 0, "Hello Nestor");
 
         sprintf(buffer, "Count: %d", count);
         drawString(0, 16, buffer);

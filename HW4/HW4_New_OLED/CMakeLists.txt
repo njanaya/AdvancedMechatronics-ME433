@@ -16,7 +16,7 @@ else()
     set(USERHOME $ENV{HOME})
 endif()
 set(sdkVersion 2.2.0)
-set(toolchainVersion RISCV_ZCB_RPI_2_2_0_3)
+set(toolchainVersion 14_2_Rel1)
 set(picotoolVersion 2.2.0-a4)
 set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
 if (EXISTS ${picoVscode})
@@ -28,38 +28,42 @@ set(PICO_BOARD pico2_w CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(HW4_OLED_Display C CXX ASM)
+project(HW4_New_OLED C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(HW4_OLED_Display 
-    HW4_OLED_Display.c 
-    lib/ssd1306/ssd1306.c
-    lib/ssd1306/font.c
+add_executable(HW4_New_OLED HW4_New_OLED.c 
+    ssd1306.c
     )
 
-pico_set_program_name(HW4_OLED_Display "HW4_OLED_Display")
-pico_set_program_version(HW4_OLED_Display "0.1")
+pico_set_program_name(HW4_New_OLED "HW4_New_OLED")
+pico_set_program_version(HW4_New_OLED "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(HW4_OLED_Display 0)
-pico_enable_stdio_usb(HW4_OLED_Display 1)
+pico_enable_stdio_uart(HW4_New_OLED 0)
+pico_enable_stdio_usb(HW4_New_OLED 1)
 
-# Add include directories
-target_include_directories(HW4_OLED_Display PRIVATE
-    ${CMAKE_CURRENT_LIST_DIR}
-    ${CMAKE_CURRENT_LIST_DIR}/lib/ssd1306
+# Add the standard library to the build
+target_link_libraries(HW4_New_OLED
+        pico_stdlib
+        
+        )
+
+# Add the standard include files to the build
+target_include_directories(HW4_New_OLED PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}
+        ${CMAKE_CURRENT_LIST_DIR}/lib/ssd1306
 )
 
-# Add libraries needed by the target
-target_link_libraries(HW4_OLED_Display
-    pico_stdlib
-    hardware_i2c
-    hardware_uart
-)
+# Add any user requested libraries
+target_link_libraries(HW4_New_OLED 
+        hardware_i2c
+        hardware_uart
+        hardware_adc
+        )
 
-pico_add_extra_outputs(HW4_OLED_Display)
+pico_add_extra_outputs(HW4_New_OLED)
 
