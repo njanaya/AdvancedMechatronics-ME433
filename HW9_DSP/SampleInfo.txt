@@ -1,0 +1,27 @@
+sigA Sample Rate Calculation
+Number of samples = 50000
+Total time = 4.9999 seconds
+Last time stamp Sample rate = 10000.20000400008 Hz
+dt = 0.0001
+DeltaSample rate = 10000.0 Hz
+
+sigB Sample Rate Calculation
+Number of samples = 16500
+Total time = 4.99969696969697 seconds
+Last time stamp Sample rate = 3300.2000121219467 Hz
+dt = 0.00030303030303030303
+DeltaSample rate = 3300.0 Hz
+
+sigC Sample Rate Calculation
+Number of samples = 20000
+Total time = 7.9996 seconds
+Last time stamp Sample rate = 2500.1250062503127 Hz
+dt = 0.0004
+DeltaSample rate = 2500.0 Hz
+
+sigD Sample Rate Calculation
+Number of samples = 4800
+Total time = 11.9975 seconds
+Last time stamp Sample rate = 400.0833506980621 Hz
+dt = 0.0025
+DeltaSample rate = 400.0 Hz
